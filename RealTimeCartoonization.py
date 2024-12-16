@@ -81,7 +81,9 @@ if st.session_state.run:
     
     while st.session_state.run:
         ret, frame = cap.read()
-        
+        if not ret:
+            st.warning("Unable to access webcam.")
+            break
 
         # Apply cartoon effect
         cartoon_frame = cartoonize_frame(frame)
